@@ -10,36 +10,71 @@ Welcome to your new app.
 
 <SurveyPrompt Title="How is Blazor working for you?" />
 
-<SfBreadcrumb class="e-custom-breadcrumb"  OverflowMode="BreadcrumbOverflowMode.Wrap" >
-                    <BreadcrumbItems>
-                        <BreadcrumbItem Text="Cart"  />
-                        <BreadcrumbItem Text="Billing"/>
-                        <BreadcrumbItem Text="Shipping"/>
-                        <BreadcrumbItem Text="Payment"/>
-                    </BreadcrumbItems>
-                    <BreadcrumbTemplates>
-                        <ItemTemplate>
-                            <div class="e-custom-item">
-                                <div class="e-custom-icon">
-                                    <span class="e-bicons e-frame e-check"></span>
-                                    <span class="e-label">@context.Text</span>
-                                </div>
-                            </div>
-                        </ItemTemplate>
-                        <SeparatorTemplate>
-                            <div class="e-custom-separator"></div>
-                        </SeparatorTemplate>
-                    </BreadcrumbTemplates>
-                </SfBreadcrumb>
+<SfBreadcrumb class="e-custom-breadcrumb" OverflowMode="BreadcrumbOverflowMode.Wrap" > 
+    <BreadcrumbItems > 
+        @foreach(var s in GetBreedCrumList(BreedCrumValue))
+        {
+            <BreadcrumbItem Text=@s ></BreadcrumbItem> 
+        }
+    </BreadcrumbItems> 
+
+    <BreadcrumbTemplates> 
+        <ItemTemplate > 
+            <div class="e-custom-item"> 
+                <div class="e-custom-icon"> 
+                                                                                            
+                    @if(DisplayBreedCrumCheckMark(@context.Text))
+                    {
+                        <span class="e-bicons e-frame e-check"></span>
+                    } else
+                    {
+                        <span class="e-bicons e-frame e-disabled e-not"></span>
+                    }
+
+                    <span class="e-label">@context.Text.Split("~")[1]</span> 
+                </div> 
+            </div> 
+        </ItemTemplate> 
+        <SeparatorTemplate> 
+            <div class="e-custom-separator"></div> 
+        </SeparatorTemplate> 
+    </BreadcrumbTemplates> 
+
+</SfBreadcrumb> 
+
+<br/>
+<br/>
+
 
 
 @code{
      private string CustomItemSeparatorActiveItem = "Shipping";
      private string ActiveItem = "Shipping";
+     private string BreedCrumValue = "$1~NewToken~1$2~Document Verification~0$3~LicenseAgent~0$4~Payment~0$5~Photo~0";
 
       private void OnItemClicked(BreadcrumbClickedEventArgs args) {
         //this.Output = this.Output + "<span>An <b>ItemClicked</b> event is triggered<hr></span>";
+
+      //$1~NewToken~1$2~Document Verification~0$3~LicenseAgent~0$4~Payment~0$5~Photo~0
+
     }
+
+     private string[] GetBreedCrumList(string BreedCrumValue)
+        {
+
+            string[] lst = BreedCrumValue.Split("$");
+            var ary =  lst.Skip(1).ToArray();
+            return ary;
+        }
+
+       private bool DisplayBreedCrumCheckMark(string CategoryStateValue)
+        {
+
+            string[] state = CategoryStateValue.Split("~");
+            var retval = state[2].ToString().Equals("1") ? true : false;
+            return retval;
+            //return bool.Parse(state[2].ToString());
+        }
 }
 
 <style>

@@ -1,0 +1,20 @@
+﻿
+https://blazor.syncfusion.com/demos/breadcrumb/template-and-customization?_ga=2.152235962.2047606935.1642605956-1735029973.1635347698
+
+1)
+   builder.Services.AddSyncfusionBlazor(options => { options.IgnoreScriptIsolation = true; });
+   ending curly brace is missing from the online example
+
+2) Green Check marks are missing in this sample when comparing it with the online sample "Template and customization"
+
+3) clicking the leftside icons/item, dismissis/hides the right cion/item
+    Provide feature so that items don't gets dismissed/hiding
+
+
+4) When wraping, there is no vertical spacing between the items
+
+5) In Microsoft Edge, There is white line before the start of triagle(>)
+
+6) why do we have (@@)  in the styles?
+    like show below
+      @@font-face {

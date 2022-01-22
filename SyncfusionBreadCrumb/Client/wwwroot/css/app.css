@@ -1,4 +1,5 @@
 ﻿@import url('open-iconic/font/css/open-iconic-bootstrap.min.css');
+@import url(//fonts.googleapis.com/css?family=Open+Sans);
 
 html, body {
     font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
@@ -62,6 +63,7 @@ a, .btn-link {
     .blazor-error-boundary::after {
         content: "An error has occurred."
     }
+
 
 
 .e-bicons {
@@ -414,11 +416,12 @@ a, .btn-link {
     color: #938bf6;
 }
 
-.e-custom-breadcrumb .e-breadcrumb-item,
-.e-custom-breadcrumb .e-breadcrumb-separator {
-    padding-right: 0px !important;
-    padding-left: 0px !important;
-}
+
+    .e-custom-breadcrumb .e-breadcrumb-item,
+    .e-custom-breadcrumb .e-breadcrumb-separator {
+        padding-right: 0px !important;
+        padding-left: 0px !important;
+    }
 
 .e-custom-breadcrumb .e-custom-icon {
     display: flex;
